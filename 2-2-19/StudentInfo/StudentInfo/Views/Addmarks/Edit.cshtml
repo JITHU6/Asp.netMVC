@@ -1,0 +1,54 @@
+﻿@model StudentInfo.Models.StudInfo
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>StudInfo</legend>
+
+        @Html.HiddenFor(model => model.StudInfoId)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DepartmentId, "Department")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("DepartmentId", String.Empty)
+            @Html.ValidationMessageFor(model => model.DepartmentId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Course)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Course)
+            @Html.ValidationMessageFor(model => model.Course)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.mark)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.mark)
+            @Html.ValidationMessageFor(model => model.mark)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
